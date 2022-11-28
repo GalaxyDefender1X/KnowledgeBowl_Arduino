@@ -1,0 +1,74 @@
+boolean flag = false;
+
+int sound = 19;
+int soundSecs = 800;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(2, INPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, INPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, INPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, INPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, INPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, INPUT);
+  pinMode(13, OUTPUT);
+  pinMode(14, INPUT);
+  pinMode(15, OUTPUT);
+  pinMode(16, INPUT);
+  pinMode(17, OUTPUT);
+  pinMode(18, INPUT);
+  pinMode(19, INPUT);
+}
+  
+ 
+
+void playWinner(int pin) {
+  Serial.println("aqui3");
+  for (int i = 0; i < 8; i++) {
+    digitalWrite(pin, HIGH);
+    delay(75);
+    digitalWrite(pin, LOW);
+    delay(75);
+    
+        if (pin >=10) { 
+    tone(sound, 900, soundSecs);
+  }
+    if (pin <10) { 
+    tone(sound, 500, soundSecs);
+  }
+  }
+  digitalWrite(pin, HIGH);
+  while (flag == false) {
+    Serial.println("aqui");
+    if (digitalRead(18) == HIGH) {
+      flag = true;}
+    }
+  flag = false;
+  digitalWrite(pin, LOW);
+}
+
+void loop() {
+  Serial.println("aqui2");
+  if (digitalRead(2) == HIGH) {
+    playWinner(3);
+  } else if (digitalRead(4) == HIGH) {
+    playWinner(5);
+  } else if (digitalRead(6) == HIGH) {
+    playWinner(7);
+  } else if (digitalRead(8) == HIGH) {
+    playWinner(9);
+  } else if (digitalRead(10) == HIGH) {
+    playWinner(11);
+  } else if (digitalRead(12) == HIGH) {
+    playWinner(13);
+  } else if (digitalRead(14) == HIGH) {
+    playWinner(15);
+  } else if (digitalRead(16) == HIGH) {
+    playWinner(17);
+  } 
+}
